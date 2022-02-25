@@ -13,6 +13,7 @@ import matplotlib.pyplot as plt
 import plotly.express as px
 import streamlit as st 
 import sqlite3
+import google.cloud
 
 
 # In[20]:
