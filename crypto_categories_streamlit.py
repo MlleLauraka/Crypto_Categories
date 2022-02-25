@@ -19,17 +19,10 @@ st.set_page_config(page_title="Crypto Categories Dashboard", page_icon=":bar_cha
 
 # ---- READ EXCEL ----
 @st.cache
-def get_data_from_excel():
-    df = pd.read_excel(
-        io="Crypto_Categories.xlsx",
-        engine="openpyxl",
-        sheet_name="Sheet1",
-        skiprows=0,
-        usecols="B:R",
-        nrows=143,
-    )
-
-df = get_data_from_excel()
+df=pd.read_excel("/Users/Laura/Desktop/PYTHON/Projects/Crypto_Categories/Crypto_Categories.xlsx",engine="openpyxl",
+        sheet_name="Sheet1"
+        )
+df.head()
 
 # ---- SIDEBAR ----
 st.sidebar.header("Please Filter Here:")
