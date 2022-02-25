@@ -18,7 +18,7 @@ import streamlit as st
 st.set_page_config(page_title="Crypto Categories Dashboard", page_icon=":bar_chart:", layout="wide")
 
 # ---- READ EXCEL ----
-@st.cache
+
 df = pd.read_excel("/Users/Laura/Desktop/PYTHON/Projects/Crypto_Categories/Crypto_Categories.xlsx", engine="openpyxl", sheet_name="Sheet1")
 df.head()
 
