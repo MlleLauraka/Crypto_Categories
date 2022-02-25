@@ -21,7 +21,7 @@ st.set_page_config(page_title="Crypto Categories Dashboard", page_icon=":bar_cha
 @st.cache
 def get_data_from_excel():
     df = pd.read_excel(
-        io="/Users/Laura/Desktop/PYTHON/Projects/Crypto_Categories/Crypto_Categories.xlsx",
+        io="Crypto_Categories.xlsx",
         engine="openpyxl",
         sheet_name="Sheet1",
         skiprows=0,
