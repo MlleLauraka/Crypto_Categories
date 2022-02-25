@@ -19,31 +19,35 @@ import google.cloud
 # In[20]:
 
 
-#Set environment variables for your notebook
-import os 
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = ('/Users/Laura/Desktop/PYTHON/GoogleCloud/cryptoexchanges-342000-e51abbfb4d83.json')
-#Imports google cloud client library and initiates BQ service
+# streamlit_app.py
+
+import streamlit as st
+from google.oauth2 import service_account
 from google.cloud import bigquery
-bigquery_client = bigquery.Client()
-#Write Query on BQ
+
+# Create API client.
+credentials = service_account.Credentials.from_service_account_info(
+    st.secrets["gcp_service_account"]
+)
+client = bigquery.Client(credentials=credentials)
+
+# Perform query.
+# Uses st.cache to only rerun when the query changes or after 10 min.
 QUERY = """
 SELECT name, market_cap, market_cap_change_24h, content, volume_24h, updated_at
 FROM crypto_categories.id;
   """
+
 #Run the query and write result to a pandas data frame
 Query_Results = bigquery_client.query(QUERY)
 df_new = Query_Results.to_dataframe()
 #View top few rows of result
 df_new.head()
 
-
-# In[21]:
-
-
 st.dataframe(df_new)
 
 
-# In[ ]:
+
 
 
 
