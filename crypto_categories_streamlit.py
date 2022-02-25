@@ -26,7 +26,7 @@ def get_data_from_excel():
         sheet_name="Sheet1",
         skiprows=0,
         usecols="B:R",
-        nrows=1000,
+        nrows=143,
     )
 
 df = get_data_from_excel()
