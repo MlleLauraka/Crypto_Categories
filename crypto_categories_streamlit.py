@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-
+import streamlit as st
+import pandas as pd
+import plotly.express as px
 
 st.set_page_config(page_title="Crypto Categories Dashboard", page_icon=":bar_chart:", layout="wide")
 
