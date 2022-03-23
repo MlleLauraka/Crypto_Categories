@@ -1,6 +1,6 @@
 import streamlit as st
 from multiapp import MultiApp
-from apps import Crypto_Category, Model_Bank_Defaulters, SQClassProject,PycharmProjectsTableauCrypto_app # importing the app modules
+from apps import Crypto_Category, Model_Bank_Defaulters,PycharmProjectsTableauCrypto_app, #SQClassProject  importing the app modules
 
 app = MultiApp()
 
