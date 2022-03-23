@@ -11,7 +11,7 @@ import json
 def app():
     #---------------------------------#
     # Page Layout
-    st.set_page_config(page_title="Crypto Categories Dashboard", page_icon=":bar_chart:", layout="wide")
+    #st.set_page_config(page_title="Crypto Categories Dashboard", page_icon=":bar_chart:", layout="wide")
     #image = Image.open('/Users/Laura/Downloads/quantitatives-ZAIbez5LTrg-unsplash.jpg')
     st.title(":bar_chart: Crypto Categories Dashboard")
     st.markdown("This app retrieves the Categories performance on the Crypto Market from **CoinGecko**!")
