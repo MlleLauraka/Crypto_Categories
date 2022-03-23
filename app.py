@@ -12,7 +12,7 @@ This multi-page app is using the [streamlit-multiapps](https://github.com/uprane
 # Adding all the applications
 app.add_app("Project 1 - Cryptocurrency Category Analysis", Crypto_Category.app)
 app.add_app("Project 2 - Banking Industry Churn Prediction", Model_Bank_Defaulters.app)
-app.add_app("Project 3 - Company Decision Support System", SQClassProject.app)
+#app.add_app("Project 3 - Company Decision Support System", SQClassProject.app)
 app.add_app("Project 4 - Cryptocurrency Exchanges Analysis", PycharmProjectsTableauCrypto_app.app)
 # The main app
 app.run()
