@@ -16,6 +16,7 @@ def app():
                         **Legend**: You can also research an Exchange by it's Id.
             
                         """)
+        return sidebar_info()
 
     # the body of the page
     def main():
@@ -44,6 +45,8 @@ def app():
         vizElement.parentNode.insertBefore(scriptElement, vizElement);                
         </script>"""
         components.html(html_temp, width=1130, height=1100)
+        return main()
+    
     if __name__ == "__main__":
         main()
 
@@ -54,11 +57,4 @@ def app():
         st.markdown(f"""<style>.reportview-container .main .block-container{{{max_width_str}}}</style>""",unsafe_allow_html=True)
 
 
-    # the controller
-    def load_page():
-        return sidebar_info()
-        return main()
-
-
-    if __name__ == "__main__":
-        load_page()
+  
