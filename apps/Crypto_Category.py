@@ -185,16 +185,16 @@ def app():
     ], axis = 0)
 
 
+    #For currenncy purpose change Int in Floats
     df_singl['market_cap'] = df_singl['market_cap'].astype(float)
     df_singl['total_volume'] = df_singl['total_volume'].astype(float)
     st.dataframe(df_singl)
     
-    #For currenncy purpose change Int in Floats
     df_selection_group=df_singl.nlargest(n=15, columns=['market_cap']) 
     df_selection_group["Color"] = np.where(df_selection_group["market_cap_change_percentage_24h"] < -0.0000, 'Negative', 'Positive')
-    
+    #, color=df_selection_group["Color"]
     st.dataframe(df_selection_group)
-    fig_single = px.histogram(y=df_selection_group["name"], x=df_selection_group["market_cap_change_percentage_24h"], color=df_selection_group["Color"], title="Top 15 Crypto Market Cap Change 24h", template="plotly_white").update_yaxes(categoryorder="total ascending")
+    fig_single = px.histogram(y=df_selection_group["name"], x=df_selection_group["market_cap"], title="Top 15 Crypto Market Cap Change 24h", template="plotly_white").update_yaxes(categoryorder="total ascending")
     fig_single.update_traces(ybins_size=1) # can add text=round(df_selection["volume_24h"], 1) if needed
     fig_single.update_layout(barmode='stack')
     fig_single.update_layout(
