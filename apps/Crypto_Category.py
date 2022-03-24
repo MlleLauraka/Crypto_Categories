@@ -191,7 +191,7 @@ def app():
     df_singl['market_cap'] = df_singl['market_cap'].astype(float)
     df_singl['total_volume'] = df_singl['total_volume'].astype(float)
     st.dataframe(df_singl)
-    st.write(**'Number of digital assets in the category'**, **df_singl.size**)
+    st.write(**'Number of digital assets in the category'**, df_singl.size)
     
     df_selection_group=df_singl.nlargest(n=15, columns=['market_cap']) 
     #df_selection_group["Color"] = np.where(df_selection_group["market_cap_change_percentage_24h"] < -0.0000, 'Negative', 'Positive')
