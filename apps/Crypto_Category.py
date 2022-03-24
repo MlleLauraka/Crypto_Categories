@@ -108,7 +108,7 @@ def app():
     # Group the 10 Best Categories
     group_10=df.nlargest(n=15, columns=['market_cap'])
     group_10["Color"] = np.where(group_10["market_cap_change_24h"] < -0.0000, 'Negative', 'Positive')
-    #s t.dataframe(df_fix.)
+    
 
     #---------------------------------#
 
@@ -127,7 +127,7 @@ def app():
         xaxis=(dict(showgrid=False))
     )
     
-     st.write('*The Top 15 Cryptocurrencies by Market Capitalization Value.')
+    st.write('*The Top 15 Cryptocurrencies by Market Capitalization Value.')
         
     #st.plotly_chart(fig_mc_cg)
     st.plotly_chart(fig_mc_cg, use_container_width=True)
