@@ -206,8 +206,8 @@ def app():
         legend_title="Legend",
         xaxis=(dict(showgrid=False))
     )
-
-    fig_single2 = px.histogram(y=df_selection_group["name"], x=df_selection_group["price_change_percentage_24h_in_currency"], title="Top 15 Crypto Price Evolution 24h(%)", template="plotly_white", color=df_selection_group["Color"]).update_yaxes(categoryorder="total ascending")
+#, color=df_selection_group["Color"]
+    fig_single2 = px.histogram(y=df_selection_group["name"], x=df_selection_group["price_change_percentage_24h_in_currency"], title="Top 15 Crypto Price Evolution 24h(%)", template="plotly_white").update_yaxes(categoryorder="total ascending")
     fig_single2.update_traces(ybins_size=1)
     fig_single2.update_layout(
         autosize=False,
