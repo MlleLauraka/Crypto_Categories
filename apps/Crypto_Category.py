@@ -191,7 +191,7 @@ def app():
     
     #For currenncy purpose change Int in Floats
     df_selection_group=df_singl.nlargest(n=15, columns=['market_cap'])
-    df_selection_group["Color"] = np.where(df_selection_group["price_change_percentage_7d_in_currency"] < -0.0000, 'Negative Change', 'Positive Change')
+    df_selection_group["Color"] = np.where(df_selection_group["price_change_percentage_7d_in_currency"] < 0, 'Negative Change', 'Positive Change')
 
     fig_single = px.histogram(y=df_selection_group["name"], x=df_selection_group["market_cap"], title="Top 10 Crypto Market Cap Change 24h", template="plotly_white").update_yaxes(categoryorder="total ascending")
     fig_single.update_traces(ybins_size=1) # can add text=round(df_selection["volume_24h"], 1) if needed
