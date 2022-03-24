@@ -127,10 +127,10 @@ def app():
         xaxis=(dict(showgrid=False))
     )
     
-    st.write('*The Top 15 Cryptocurrencies by Market Capitalization Value.')
-        
-    #st.plotly_chart(fig_mc_cg)
+    
     st.plotly_chart(fig_mc_cg, use_container_width=True)
+    st.write('The Top 15 Cryptocurrencies by Market Capitalization Value')
+     
     #--------Single Chosen---------)
     st.markdown("""---""")
     st.subheader('Single Category Analysis')
@@ -194,13 +194,10 @@ def app():
     df_singl['market_cap'] = df_singl['market_cap'].astype(float)
     df_singl['total_volume'] = df_singl['total_volume'].astype(float)
     st.dataframe(df_singl)
-    st.write("**The category has** **"+ str(df_singl.size)+"** **digital assets as of today.**")
+    st.write("**The category has** **"+ str(df_singl.size)+"** **digital assets as of today**")
     
     df_selection_group=df_singl.nlargest(n=15, columns=['market_cap']) 
-    #df_selection_group["Color"] = np.where(df_selection_group["market_cap_change_percentage_24h"] < -0.0000, 'Negative', 'Positive')
-    #, color=df_selection_group["Color"]
-    
-    st.dataframe(df_selection_group)
+
     fig_single = px.histogram(y=df_selection_group["name"], x=df_selection_group["market_cap"], title="Top 15 Crypto Market Capitalization", template="plotly_white").update_yaxes(categoryorder="total ascending")
     fig_single.update_traces(ybins_size=1) # can add text=round(df_selection["volume_24h"], 1) if needed
     fig_single.update_layout(barmode="stack")
