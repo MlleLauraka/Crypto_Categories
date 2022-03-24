@@ -192,6 +192,7 @@ def app():
     #For currenncy purpose change Int in Floats
     df_selection_group=df_singl.nlargest(n=15, columns=['market_cap']) 
     df_selection_group["Color"] = np.where(df_selection_group["price_change_percentage_24h_in_currency"] < -0.0000, 'Negative', 'Positive')
+    
     st.dataframe(df_selection_group)
     fig_single = px.histogram(y=df_selection_group["name"], x=df_selection_group["market_cap"], title="Top 15 Crypto Market Cap Change 24h", template="plotly_white").update_yaxes(categoryorder="total ascending")
     fig_single.update_traces(ybins_size=1) # can add text=round(df_selection["volume_24h"], 1) if needed
@@ -207,8 +208,12 @@ def app():
         xaxis=(dict(showgrid=False))
     )
 
-    fig_single2 = px.histogram(y=df_selection_group["name"], x=df_selection_group["price_change_percentage_24h_in_currency"], color=df_selection_group["Color"], title="Top 15 Crypto Price Evolution 24h(%)", template="plotly_white").update_yaxes(categoryorder="total ascending")
+    df_selection_group2=df_singl.nlargest(n=15, columns=['market_cap']) 
+    df_selection_group2["Color"] = np.where(df_selection_group2["price_change_percentage_24h_in_currency"] < -0.0000, 'Negative', 'Positive')
+    
+    fig_single2 = px.histogram(y=df_selection_group2["name"], x=df_selection_group2["price_change_percentage_24h_in_currency"], color=df_selection_group2["Color"], title="Top 15 Crypto Price Evolution 24h(%)", template="plotly_white").update_yaxes(categoryorder="total ascending")
     fig_single2.update_traces(ybins_size=1)
+    fig_single2.update_layout(barmode='stack')
     fig_single2.update_layout(
         autosize=False,
         width=1100,
