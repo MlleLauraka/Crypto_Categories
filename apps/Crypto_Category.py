@@ -113,7 +113,7 @@ def app():
     #---------------------------------#
 
 
-    fig_mc_cg = px.histogram(y=group_10["name"], x=group_10["market_cap_change_24h"], title="Top 10 Categories Market Cap Change 24h(%)", template="plotly_white", color=group_10["Color"]).update_yaxes(categoryorder="total ascending")
+    fig_mc_cg = px.histogram(y=group_10["name"], x=group_10["market_cap_change_24h"], title="Top 15 Categories Market Cap Change 24h(%)", template="plotly_white", color=group_10["Color"]).update_yaxes(categoryorder="total ascending")
     fig_mc_cg.update_traces(ybins_size=1) # can add text=round(df_selection["volume_24h"], 1) if needed
     fig_mc_cg.update_layout(barmode='stack')
     fig_mc_cg.update_layout(
@@ -126,12 +126,15 @@ def app():
         legend_title="Legend Title",
         xaxis=(dict(showgrid=False))
     )
+    
+     st.write('*The Top 15 Cryptocurrencies by Market Capitalization Value.')
+        
     #st.plotly_chart(fig_mc_cg)
     st.plotly_chart(fig_mc_cg, use_container_width=True)
     #--------Single Chosen---------)
     st.markdown("""---""")
     st.subheader('Single Category Analysis')
-    st.write('Please select a Crypto Category in the Sidebar to analyse its performance')
+    st.write('**Please select a Crypto Category in the Sidebar to analyse its performance**')
 
     #Get Url for signl category coins
     df1=(df_selection['id'].iloc[0])
@@ -191,14 +194,14 @@ def app():
     df_singl['market_cap'] = df_singl['market_cap'].astype(float)
     df_singl['total_volume'] = df_singl['total_volume'].astype(float)
     st.dataframe(df_singl)
-    st.write("**The category has** **"+ str(df_singl.size)+"** digital assets as of today.**")
+    st.write("**The category has** **"+ str(df_singl.size)+"** **digital assets as of today.**")
     
     df_selection_group=df_singl.nlargest(n=15, columns=['market_cap']) 
     #df_selection_group["Color"] = np.where(df_selection_group["market_cap_change_percentage_24h"] < -0.0000, 'Negative', 'Positive')
     #, color=df_selection_group["Color"]
     
     st.dataframe(df_selection_group)
-    fig_single = px.histogram(y=df_selection_group["name"], x=df_selection_group["market_cap"], title="Top 15 Crypto Market Cap Change 24h", template="plotly_white").update_yaxes(categoryorder="total ascending")
+    fig_single = px.histogram(y=df_selection_group["name"], x=df_selection_group["market_cap"], title="Top 15 Crypto Market Capitalization", template="plotly_white").update_yaxes(categoryorder="total ascending")
     fig_single.update_traces(ybins_size=1) # can add text=round(df_selection["volume_24h"], 1) if needed
     fig_single.update_layout(barmode="stack")
     fig_single.update_layout(
@@ -206,14 +209,14 @@ def app():
         width=1100,
         height=500,
         plot_bgcolor="rgba(0,0,0,0)",
-        xaxis_title="Market Cap Change 24h(USD)",
-        yaxis_title="Categories",
+        xaxis_title="Market Capitalization in USD",
+        yaxis_title="Top Assets in the Categories Chosen",
         legend_title="Legend",
         xaxis=(dict(showgrid=False))
     )
 
     
-    fig_single2 = px.histogram(y=df_selection_group["name"], x=df_selection_group["current_price"], title="Top 15 Crypto Price Evolution 24h(%)", template="plotly_white").update_yaxes(categoryorder="total ascending")
+    fig_single2 = px.histogram(y=df_selection_group["name"], x=df_selection_group["current_price"], title="Price of the Top 15 Crypto by Market Price", template="plotly_white").update_yaxes(categoryorder="total ascending")
     fig_single2.update_traces(ybins_size=1)
     fig_single2.update_layout(barmode="stack")
     fig_single2.update_layout(
@@ -221,8 +224,8 @@ def app():
         width=1100,
         height=500,
         plot_bgcolor="rgba(0,0,0,0)",
-        xaxis_title="Price Change 24h(%)",
-        yaxis_title="Categories",
+        xaxis_title="Current Price in USD",
+        yaxis_title="Top Assets in the Categories Chosen",
         legend_title="Legend",
         xaxis=(dict(showgrid=False))
     )
