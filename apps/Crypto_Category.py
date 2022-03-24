@@ -129,7 +129,7 @@ def app():
     
     
     st.plotly_chart(fig_mc_cg, use_container_width=True)
-    st.write('The Top 15 Cryptocurrencies by Market Capitalization Value')
+    st.write('The Top 15 Cryptocurrencies are determined by Market Capitalization Value')
      
     #--------Single Chosen---------)
     st.markdown("""---""")
