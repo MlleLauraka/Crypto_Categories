@@ -175,7 +175,7 @@ def app():
     'ath_change_percentage',
     'ath_change_percentage',
     'atl_change_percentage',
-    'last_updated'
+    'last_updated',
     'price_change_percentage_24h',
     'ath_date',
     'atl',
