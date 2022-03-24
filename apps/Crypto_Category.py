@@ -188,7 +188,8 @@ def app():
     df_singl['market_cap'] = df_singl['market_cap'].astype(float)
     df_singl['total_volume'] = df_singl['total_volume'].astype(float)
     st.dataframe(df_singl)
-
+    
+    #For currenncy purpose change Int in Floats
     df_selection_group=df_singl.nlargest(n=15, columns=['market_cap'])
     df_selection_group["Color"] = np.where(df_selection_group["price_change_percentage_7d_in_currency"] < -0.0000, 'Negative Change', 'Positive Change')
 
@@ -200,19 +201,19 @@ def app():
         width=1100,
         height=500,
         plot_bgcolor="rgba(0,0,0,0)",
-        xaxis_title="Market Cap Change(USD)",
+        xaxis_title="Market Cap Change 24h(USD)",
         yaxis_title="Categories",
         legend_title="Legend",
         xaxis=(dict(showgrid=False))
     )
 
-    fig_single2 = px.histogram(y=df_selection_group["name"], x=df_selection_group["price_change_percentage_7d_in_currency"], title="Top 10 Crypto Price Evolution 7days(%)", template="plotly_white", color=df_selection_group["Color"]).update_yaxes(categoryorder="total ascending")
+    fig_single2 = px.histogram(y=df_selection_group["name"], x=df_selection_group["price_change_percentage_24h_in_currency"], title="Top 10 Crypto Price Evolution 7days(%)", template="plotly_white", color=df_selection_group["Color"]).update_yaxes(categoryorder="total ascending")
     fig_single2.update_layout(
         autosize=False,
         width=1100,
         height=500,
         plot_bgcolor="rgba(0,0,0,0)",
-        xaxis_title="Price Change 7days(%)",
+        xaxis_title="Price Change 24h(%)",
         yaxis_title="Categories",
         legend_title="Legend",
         xaxis=(dict(showgrid=False))
