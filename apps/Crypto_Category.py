@@ -191,15 +191,16 @@ def app():
     df_singl['market_cap'] = df_singl['market_cap'].astype(float)
     df_singl['total_volume'] = df_singl['total_volume'].astype(float)
     st.dataframe(df_singl)
+    st.write(**'Number of digital assets in the category'** **df_singl.size**)
     
     df_selection_group=df_singl.nlargest(n=15, columns=['market_cap']) 
     #df_selection_group["Color"] = np.where(df_selection_group["market_cap_change_percentage_24h"] < -0.0000, 'Negative', 'Positive')
     #, color=df_selection_group["Color"]
     
     st.dataframe(df_selection_group)
-    fig_single = px.histogram(y=df_selection_group["name"], x=df_selection_group["market_cap_change_24h"], title="Top 15 Crypto Market Cap Change 24h", template="plotly_white").update_yaxes(categoryorder="total ascending")
+    fig_single = px.histogram(y=df_selection_group["name"], x=df_selection_group["market_cap"], title="Top 15 Crypto Market Cap Change 24h", template="plotly_white").update_yaxes(categoryorder="total ascending")
     fig_single.update_traces(ybins_size=1) # can add text=round(df_selection["volume_24h"], 1) if needed
-    fig_single.update_layout(barmode='stack')
+    fig_single.update_layout(barmode="stack")
     fig_single.update_layout(
         autosize=False,
         width=1100,
@@ -212,9 +213,9 @@ def app():
     )
 
     
-    fig_single2 = px.histogram(y=df_selection_group["name"], x=df_selection_group["price_change_percentage_24h_in_currency"], title="Top 15 Crypto Price Evolution 24h(%)", template="plotly_white").update_yaxes(categoryorder="total ascending")
+    fig_single2 = px.histogram(y=df_selection_group["name"], x=df_selection_group["current_price"], title="Top 15 Crypto Price Evolution 24h(%)", template="plotly_white").update_yaxes(categoryorder="total ascending")
     fig_single2.update_traces(ybins_size=1)
-    fig_single2.update_layout(barmode='stack')
+    fig_single2.update_layout(barmode="stack")
     fig_single2.update_layout(
         autosize=False,
         width=1100,
