@@ -39,7 +39,7 @@ if choose == "About":
     #with col1:  # To display brand log
         #st.image(logo, width=130)
     column2.write(
-        "Laura Kouadio is a Data Scientist Enthusiat and Millenial Lifestyle Blogger. She writes Data Science tuturials and [articles](https://medium) on the Blockchain Economy, Web3 Technology and Topics of interest using Python, R, Tableau and other analytic tools .\n\n  She is also a workout advocate who loves healthy habits when it comes to the Mind, Body, Spirit (And Money).\n\n[Laura's LinkedIn](https://www.linkedin.com/in/laura-kouadio-083374131/) - [Laura's' GitHub](https://github.com/MlleLauraka/)")
+        "Laura Kouadio is a Data Scientist Enthusiat and Millenial Lifestyle Blogger. She writes Data Science tuturials and [articles](https://medium) on the Blockchain Economy, Web3 Technology and Topics of interest using Python, R, Tableau and other analytic tools .\n\n  She is also a workout advocate who loves healthy habits when it comes to the Mind, Body, Spirit And Money.\n\n[Laura's LinkedIn](https://www.linkedin.com/in/laura-kouadio-083374131/) - [Laura's' GitHub](https://github.com/MlleLauraka/)")
     current_picture=Image.open("current_picture.png")
     column1.image(current_picture, width=400)
     #st.image(profile, width=700)
