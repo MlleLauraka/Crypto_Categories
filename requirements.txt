@@ -14,3 +14,4 @@ openpyxl==3.0.9
 streamlit-option-menu==0.3.2
 imbalanced-learn==0.7.0
 imblearn==0.0
+click==8
