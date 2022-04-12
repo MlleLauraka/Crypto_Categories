@@ -49,7 +49,7 @@ if choose == "About":
     st.markdown("""
     - **Tools and Languages:** ARCHER, Excel, Google Sheets, JIRA, R, Power BI, PowerPoint, Python, SQL, Tableau, World
     - **Quantitative Research:**  Data Optimization -Scraping, Cleaning, Visualization, Analysis and Data Modeling 
-    - **Softwares:** ARCHER, Google Cloud, JIRA, Jupyter, PyCharm, Anaconda, MangoDB, WebScraper, IBMWatsonStudio, GoogleCollab, Rstudio, Dune Analytics
+    - **Softwares:** ARCHER, Google Cloud, JIRA, Jupyter, PyCharm, Anaconda, WebScraper, IBMWatsonStudio, GoogleCollab, Rstudio, Dune Analytics
     - **Communication:** English, French (Native Language), Spanish (Reading and Writing), Italian (Reading and Writing)
     - **Certificates:** IBM Data Science Professional 
     """)
