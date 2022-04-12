@@ -100,7 +100,7 @@ if choose == "About":
     st.markdown('**<div style="text-align: justify"> EXTRA CURRICULAR ACTIVITIES & AWARDS</div>**', unsafe_allow_html=True)
     st.markdown("""---""")
     st.markdown(""" 
-    - **SNHU Cursus:** Award of Academic Excellence - Graduated in only two semesters (1 year) with a GPA of 4
+    - **SNHU Cursus:** Award of Academic Excellence - Graduated in only two semesters (1 year) with a GPA of 3.9
     - **Global Young Leader Program 2019:** Hackathon at Ben Gourion University of the Neguev, Israel (3rd place Award)
     - **SKEMA Gala Organizer:** Setting up the Communication Style, Planning Operation and Entertainment, Hosting the Event
     - **Road Trip & Backpacking:** Travel in Asia (China, Indonesia, Malaysia, Thailand)
