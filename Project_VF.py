@@ -956,7 +956,7 @@ elif choose =="Crypto Exchanges Analysis with Tableau":
             scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    
             vizElement.parentNode.insertBefore(scriptElement, vizElement);                
             </script>"""
-        components.html(html_temp, width=1130, height=1100)
+         components.html(html_temp, width=1130, height=1100)
 
 
     if __name__ == "__main__":
