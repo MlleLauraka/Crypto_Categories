@@ -284,7 +284,7 @@ if choose == "DeFi Analytic Paper - ML Regression Model":
     st.markdown("""---""")
     st.markdown('<div style="text-align: justify"> Figure 1. DeFi pyramidic system </div>',unsafe_allow_html=True)
     st.markdown("""---""")
-    DeFi_Structure = Image.open("DeFi_Structure.png")
+    DeFi_Structure = Image.open("Pictures & Dataset Used/DeFi_Structure.png")
     st.image(DeFi_Structure, width=700)
     st.markdown("""---""")
     st.markdown('<div style="text-align: justify"> DeFi industry uses Artificial intelligence, Cloud, and Distributed Networks like Blockchain as a supporting structure to produce this end-to-end self-monitored ecosystem.</div>', unsafe_allow_html=True)
