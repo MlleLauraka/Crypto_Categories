@@ -269,8 +269,16 @@ if choose == "DeFi Analytic Paper - ML Regression Model":
     st.markdown(""" <style> .font { font-size:35px ; font-family: 'Cooper Black'; color: #C3DCE7 ;} </style> """, unsafe_allow_html=True)
 
     st.markdown('<p class="font"> Decentralized finance: An analysis of the potential and threats to its growth</p>', unsafe_allow_html=True)
-#ABSTRACT PART
     st.markdown("""---""")
+#Download Analytic Paper   
+    with open("Pictures & Dataset Used/Decentralized Finance.pdf", "rb") as file:
+        btn = st.download_button(
+            label="Download Analytic Paper",
+            data=file,
+            file_name="DeFi_Analytic_Paper.pdf",
+
+        )
+#ABSTRACT PART
     st.title("ABSTRACT")
     st.markdown('<div style="text-align: justify"> Decentralized Finance system grew of 250% in a year and represents a Total Value Locked (TVL) of $235B as of April 6th, 2022, according to analytics firm Defillama. At the intersection between finance and blockchain technology, it offers its community the opportunity to access financial services free of intermediary. That freedom is a benefit for many populations underbanked or totally excluded from the exclusive and government’s centralized traditional financial systems as well as for investors looking for more independence. The sector is still free willing and largely unregulated which offers to several opportunities but also uncountable risks. Therefore, it is important to evaluate the parameters influencing Decentralized Finance (DeFi)’s growth to forecast its future value. This analytical research paper creates a simple regression model to predict Defi’s performance. For this, we would lay the foundation of DeFi(I) by analyzing the underlying technologies structuring the ecosystem, defining the principles of DeFi and comparing DeFi to the traditional financial system. We would also observe Defi performance from 2019 to April 2020 and construct a multilinear regression model to understand how inflation, Bitcoin value, gas fees prices and cybersecurity exploits impacts on DeFi’s TVL performance (II). Finally, we would submit a study of futures events and systems such as Cyber Security Breach, Cryptocurrency Regulations, Environmental Social Governance (ESG), Central Bank Digital Currencies (CBDC) that could redefine the path to expect for DeFi’s Future Performance (III).  </div>', unsafe_allow_html=True)
 
