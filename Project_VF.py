@@ -405,8 +405,8 @@ if choose == "DeFi Analytic Paper - ML Regression Model":
         width=1000,
         height=500,
         plot_bgcolor="rgba(0,0,0,0)",
-        xaxis_title="Total Value Locked(USD)",
-        yaxis_title="Defi Category",
+        xaxis_title="Defi Categories",
+        yaxis_title="Total Value Locked(USD)",
         legend_title="Legend",
         xaxis=(dict(showgrid=False))
     )
@@ -437,8 +437,8 @@ if choose == "DeFi Analytic Paper - ML Regression Model":
         width=1000,
         height=500,
         plot_bgcolor="rgba(0,0,0,0)",
-        xaxis_title="Total Value Locked (USD)",
-        yaxis_title="Blockchain",
+        xaxis_title="Blockchains",
+        yaxis_title="Total Value Locked (USD)",
         legend_title="Legend",
         xaxis=(dict(showgrid=False))
     )
