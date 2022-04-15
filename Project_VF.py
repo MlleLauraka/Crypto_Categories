@@ -28,7 +28,7 @@ if choose == "About":
             </style> """, unsafe_allow_html=True)
     st.markdown('<p class="font">Laura Kouadio Profile </p>', unsafe_allow_html=True)
     column1, column2 = st.columns([0.6, 0.4])
-    current_picture = Image.open("test_linkedin.png")
+    current_picture = Image.open("Pictures & Dataset Used/test_linkedin.png")
     column1.image(current_picture, width=400)
     column2.info("""
     Fast paced learner and natural investigator, I am directing my skills toward data sciences and analytics to extract the best insights out of data and help you make meaningful decisions.
@@ -108,7 +108,7 @@ if choose == "About":
     """)
 
     #Download Resume
-    with open("Resume_LK.pdf", "rb") as file:
+    with open("Pictures & Dataset Used/Resume_LK.pdf", "rb") as file:
         btn = st.download_button(
             label="Download Resume",
             data=file,
@@ -121,7 +121,7 @@ if choose == "DeFi Analytic Paper - ML Regression Model":
 #Begin by uploading all datasets and APIs
 
     #Exploit Dataframe from TheBlockcrypto
-    Exploit_theblockcrypto = pd.read_excel("Exploit_theblockcrypto.xlsx")
+    Exploit_theblockcrypto = pd.read_excel("Pictures & Dataset Used/Exploit_theblockcrypto.xlsx")
     Exploit_theblockcrypto['Timestamp'] = pd.to_datetime(Exploit_theblockcrypto['Timestamp'], unit='s')
     Exploit_theblockcrypto.rename({'Result': "Exploit"}, axis='columns', inplace=True)
     Exploit_fig = px.histogram(x=Exploit_theblockcrypto['Timestamp'], y=Exploit_theblockcrypto['Exploit'],
@@ -138,7 +138,7 @@ if choose == "DeFi Analytic Paper - ML Regression Model":
     )
 
     #The DeFi TVL from defillama API extracted in April 2022
-    History_Tlv = pd.read_excel("Hist_Tlv.xlsx")
+    History_Tlv = pd.read_excel("Pictures & Dataset Used/Hist_Tlv.xlsx")
     History_Tlv.rename({"totalLiquidityUSD": "TLV"}, axis=1, inplace=True)
     for i in list(range(len(History_Tlv.index))):  # get the list of the df
         if i > 1213 or i <= 148:  # Select the rows you want to get rid off
@@ -146,7 +146,7 @@ if choose == "DeFi Analytic Paper - ML Regression Model":
     History_Tlv = History_Tlv.reset_index(drop=True)
 
     #Ethereum TVL from defillama API extracted in April 2022
-    History_TlvChain = pd.read_excel("etheurem_hist.xlsx")
+    History_TlvChain = pd.read_excel("Pictures & Dataset Used/etheurem_hist.xlsx")
     History_TlvChain.rename({"totalLiquidityUSD": "Eth_TLV"}, axis=1, inplace=True)
     for i in list(range(len(History_TlvChain.index))):  # get the list of the df
         if i > 1213 or i <= 148:  # Select the rows you want to get rid off
@@ -154,7 +154,7 @@ if choose == "DeFi Analytic Paper - ML Regression Model":
     History_TlvChain = History_TlvChain.reset_index(drop=True)
 
     #Inflation: Average CPI from Bureau of Labor and Statistics
-    Inflation = pd.read_excel("Inflation_clean.xlsx")
+    Inflation = pd.read_excel("Pictures & Dataset Used/Inflation_clean.xlsx")
     fig_Inflation = px.line(x=Inflation['Date'], y=Inflation['Rate'],
                             title="Consumption Price Index History - April 2019 to February 2022")
     fig_Inflation.update_layout(
@@ -169,7 +169,7 @@ if choose == "DeFi Analytic Paper - ML Regression Model":
     )
 
     #Bitcoin MarketCap History from data.nasdaq
-    blockchain = pd.read_csv("BCHAIN-MKTCP.csv")
+    blockchain = pd.read_csv("Pictures & Dataset Used/BCHAIN-MKTCP.csv")
     blockchain = blockchain.loc[::-1].set_index(blockchain.index)  # reindexing from downup(reverse)
     for i in list(range(len(blockchain.index))):  # get the list of the df
         if i > 1069 or i <= 4:  # Select the rows you want to get rid off
@@ -320,7 +320,7 @@ if choose == "DeFi Analytic Paper - ML Regression Model":
     st.markdown("""---""")
     st.markdown('<div style="text-align: justify"> Figure 2. Traditional financial system and Decentralized financial system </div>', unsafe_allow_html=True)
     st.markdown("""---""")
-    TradFi_DeFi = Image.open("TradFi_DeFi.png")
+    TradFi_DeFi = Image.open("Pictures & Dataset Used/TradFi_DeFi.png")
 
     st.image(TradFi_DeFi, width=700)
     st.markdown('<div style="text-align: justify"> Source: Stably </div>', unsafe_allow_html=True)
@@ -546,7 +546,7 @@ if choose == "DeFi Analytic Paper - ML Regression Model":
                 unsafe_allow_html=True)
     st.markdown("""---""")
     # figure  11
-    prediction_chart = Image.open("prediction_chart.png")
+    prediction_chart = Image.open("Pictures & Dataset Used/prediction_chart.png")
     st.image(prediction_chart, width=700)
     st.markdown('<div style="text-align: justify"> From the graph we see that the predicted value’s trend is quite close to the actual scatter point describing the actual value. Therefore, we can say that the date, the number of exploits, the bitcoin market capitalization value, the inflation rate as well as the gas price are parameters explaining the Total value Locked for DeFi.\n\n'
                 'Source: Laura Kouadio </div>', unsafe_allow_html=True)
@@ -563,7 +563,7 @@ if choose == "DeFi Analytic Paper - ML Regression Model":
                 unsafe_allow_html=True)
     st.markdown("""---""")
     # figure  12
-    Hashrate_country = Image.open("Hashrate_country.png")
+    Hashrate_country = Image.open("Pictures & Dataset Used/Hashrate_country.png")
     st.image(Hashrate_country, width=700)
     st.markdown('<div style="text-align: justify"> 75.5% of the mining share were occurring from IP addresses located in China before the announcement. Today, this figures average zero percent for China.\n\n'
                 'The graph unveils also the new importance of Kazakhstan in the bitcoin ecosystem as they own 13.1% of the mining space (network hash rate) which makes of them the second largest share older behind the United States of America (35.5%) as of April 2022, according to the Cambridge Center for Alternative Finance. This revelation urges to keep an eye on the political regulation in place in the country.\n\n'
@@ -602,7 +602,7 @@ if choose == "DeFi Analytic Paper - ML Regression Model":
         unsafe_allow_html=True)
     st.markdown("""---""")
     # figure  13
-    CPI_predictions = Image.open("CPI_predictions.png")
+    CPI_predictions = Image.open("Pictures & Dataset Used/CPI_predictions.png")
     st.image(CPI_predictions, width=700)
     st.markdown('<div style="text-align: justify"> Indeed, according to the Inflation prediction aggregator Knoema the IMF, The FOMC, the European Commission and the OECD and the USDA, put the US CPI inflation within the range of 1.69% to 4.30% percent in 2022 and around 2.5% in 2023. Almost all agencies predicted that CPI inflation will decrease in 2022 compared to 2021. According to the regressor model that we used, that change would lower the increase of DeFi TVL.\n\n'
                 'Source: Knoema </div>', unsafe_allow_html=True)
@@ -619,7 +619,7 @@ if choose == "DeFi Analytic Paper - ML Regression Model":
         unsafe_allow_html=True)
     st.markdown("""---""")
     #figure 14
-    Regulation_States = Image.open("Regulation_States.png")
+    Regulation_States = Image.open("Pictures & Dataset Used/Regulation_States.png")
     st.image(Regulation_States, width=700)
 
     st.markdown('<div style="text-align: justify">Many Countries already declared themselves favorable to the crypto currency adoption such as El Salvador where Bitcoin has been declared official currency since 2021 by populist president N. Bukele. On the other hand, China decided to outlaw cryptocurrencies according to the Law Library of Congress, 9 other countries decided to forbit access to the Crypto currency market from their citizen by totally banning it.\n\n'
@@ -643,7 +643,7 @@ if choose == "DeFi Analytic Paper - ML Regression Model":
     st.markdown('<div style="text-align: justify"> Figure 15: Central Bank Digital Currencies Status – April 2022   </div>',unsafe_allow_html=True)
     st.markdown("""---""")
     # figure 15
-    CBDC_states = Image.open("CBDC_states.png")
+    CBDC_states = Image.open("Pictures & Dataset Used/CBDC_states.png")
     st.image(CBDC_states, width=700)
     st.markdown('<div style="text-align: justify"> As seen on the chart, CBDC is still at its genesis and will be an impactful innovation in the traditional financial system. The future tokenized and account-based money, centralized and decentralized systems, will all co-exist which might greatly impact DeFi performance in the future.\n\n'
                 'Source: cbdctracker.org </div>', unsafe_allow_html=True)
@@ -1011,7 +1011,7 @@ elif choose =="Business Performance Analysis with SQL":
     st.write('**This picture is the ERD of the 9 tables to be analyzed**')
 
     # Put the st.image of the ERD
-    image = Image.open('Image-ERD.png')
+    image = Image.open('Pictures & Dataset Used/Image-ERD.png')
     st.image(image, width=750)
     st.header('Data Visualization on the datasets')
     st.write('**Each Table give basic information on its respective topic. Here are some metrics relative to the identity of the company:**\n\n'
@@ -1019,8 +1019,8 @@ elif choose =="Business Performance Analysis with SQL":
              '**The company has 363 employees scattered in 8 departmennts. They are mainly Associates, Driver, Freight Stocker and Load Specialist.**\n\n'
              '**Moreover,the company partners with 22 vendors to sell 252 differents products. 90% Of those products are Top Coats & Primers according to the Charts below, it seems like the sales are not influenced by seasonality since we do not see any major trend appearing.**')
 
-    Balance_by_sheet = Image.open('Balance by sheet.png')
-    Invoice_by_Date = Image.open('Invoice amount by Date.png')
+    Balance_by_sheet = Image.open('Pictures & Dataset Used/Balance by sheet.png')
+    Invoice_by_Date = Image.open('Pictures & Dataset Used/Invoice amount by Date.png')
     st.image(Balance_by_sheet, width=750)
     st.image(Invoice_by_Date, width=750)
 
@@ -1037,7 +1037,7 @@ elif choose =="Business Performance Analysis with SQL":
         'Knowing who the best employees are is crucial for Business Performance. The idea is to keep motivated the 10% employees that bring most value to the companies, therefore incentivize those ones that brought the highest amount of sales on the period. Below is a picture of the dataset created giving the list of employees by decreasing sales amount.\n\n'
         '*For this we used the LGINVOICE and  LGEMPLOYEE Tables*\n\n'
     )
-    Best_Employees = Image.open('Best Employees.png')
+    Best_Employees = Image.open('Pictures & Dataset Used/Best Employees.png')
     st.image(Best_Employees, width=350)
 
     st.write(
@@ -1046,7 +1046,7 @@ elif choose =="Business Performance Analysis with SQL":
         '*For this we used the LGINVOICE and  LGVENDOR Tables*\n\n'
     )
 
-    Best_Suppliers = Image.open('Best Supplier.png')
+    Best_Suppliers = Image.open('Pictures & Dataset Used/Best Supplier.png')
     st.image(Best_Suppliers, width=750)
 
 
@@ -1055,7 +1055,7 @@ elif choose =="Business Performance Analysis with SQL":
         'Customers with the highest balance should be eligible to cross sales or discounts to boost their basket amount and increase the benefit. Out of 336 customers, selecting the top 10% is a reasonable idea. Also, flagging the 10% less loyal customers is also a good idea to incentivize them or understanding the reason why they do not buy that much from the company(survey).\n\n'
         '*For this we used the LGINVOICE and  LGCUSTOMER Tables*\n\n'
     )
-    Best_Clients = Image.open('Best Clients.png')
+    Best_Clients = Image.open('Pictures & Dataset Used/Best Clients.png')
     st.image(Best_Clients, width=350)
 
 
@@ -1065,7 +1065,7 @@ elif choose =="Business Performance Analysis with SQL":
         '*For this we used the LGLINE and  LGPRODUCT Tables*\n\n'
     )
 
-    Product_Sales = Image.open('Product Category Sales Amount.png')
+    Product_Sales = Image.open('Pictures & Dataset Used/Product Category Sales Amount.png')
     st.image(Product_Sales, width=750)
-    Product_Range= Image.open('Product Price Range.png')
+    Product_Range= Image.open('Pictures & Dataset Used/Product Price Range.png')
     st.image(Product_Range, width=750)
