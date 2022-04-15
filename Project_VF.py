@@ -191,7 +191,7 @@ if choose == "DeFi Analytic Paper - ML Regression Model":
     )
 
     #Ethereum GasPrice in Wei from Etherscan
-    GasPrice = pd.read_csv("AvgGasPrice.csv")
+    GasPrice = pd.read_csv("Pictures & Dataset Used/AvgGasPrice.csv")
     GasPrice["Value (Wei)"] = GasPrice["Value (Wei)"] / 100000000 * 0.00000035 #Giving it its USD value
     GasPrice['Date(UTC)'] = pd.to_datetime(GasPrice['Date(UTC)'], format='%m/%d/%Y').dt.strftime('%Y-%m-%d')
     GasPrice['Date(UTC)'] = pd.to_datetime(GasPrice['Date(UTC)'], format='%Y-%m-%d')
