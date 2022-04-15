@@ -694,7 +694,6 @@ if choose == "Crypto Categories Vizualization - Engineering with Python":
     * **Objectif:** Learn whose industries are being currently disrupted by the Blockchain Technolgy and what are their value on the Crypto Market as of today.
     * **Python libraries:** Pandas, Streamlit, Numpy, Plotly.express, Json
     * **Data source:** [CoinGecko](https://www.coingecko.com/).
-    * **Credit:** Youtube Channel Data Professor : *[Data Science Web App in Python](https://www.youtube.com/watch?v=ZZ4B0QUHuNc&t=338s)*).
     * **Contact:** *[Laura Kouadio](https://www.linkedin.com/in/laura-kouadio-083374131/)*
     * **Code:** *[Github](https://github.com/MlleLauraka/)*
     """)
@@ -960,8 +959,6 @@ elif choose =="Crypto Exchanges Analysis with Tableau":
             f'Link to the dashboard on Tableau Public [here](https://public.tableau.com/app/profile/laura5733/viz/Top100CryptoExchangesAnalysisDaily/Story1#1)')
         st.markdown(
             f"**Data source and information about data collect can be found on [Coin Gecko - API](https://www.coingecko.com/en/api)**")
-        st.markdown(
-            f"**Credit: [Okoh Anita](https://towardsdatascience.com/embedding-tableau-in-streamlit-a9ce290b932b)**")
         max_width_str = f"max-width: 1030px;"
         st.markdown(f"""<style>.reportview-container .main .block-container{{{max_width_str}}}</style>""",
                     unsafe_allow_html=True)
