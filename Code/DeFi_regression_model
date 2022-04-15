@@ -1,0 +1,467 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[1]:
+
+
+import requests
+import json
+import numpy as np
+import pandas as pd
+import seaborn as sns
+import plotly.graph_objects as go
+import matplotlib.pyplot as plt
+import plotly.express as px
+import streamlit as st 
+import statsmodels.api as sm
+import datetime
+     
+#pd.set_option('precision', 0)
+
+pd.options.display.float_format = '{:,}'.format
+#pd.options.display.int_format = '{:,}'.format
+
+
+# # GET DATA
+
+# In[2]:
+
+
+Exploit_theblockcrypto = pd.read_excel("Exploit_theblockcrypto.xlsx")
+Exploit_theblockcrypto.head()
+
+
+# In[3]:
+
+
+Exploit_theblockcrypto.info()
+
+
+# In[4]:
+
+
+Exploit_theblockcrypto['Timestamp'] = pd.to_datetime(Exploit_theblockcrypto['Timestamp'], unit='s')
+Exploit_theblockcrypto
+
+
+# In[5]:
+
+
+Exploit_theblockcrypto.rename({'Result':"Exploit"}, axis='columns',inplace=True)
+
+
+# In[6]:
+
+
+Exploit_theblockcrypto
+
+
+# In[7]:
+
+
+Exploit_fig=px.histogram(x=Exploit_theblockcrypto['Timestamp'], y=Exploit_theblockcrypto['Exploit'], title="Defi Exploit History- March 2020 to February 2022")
+Exploit_fig.update_layout(
+        autosize=False,
+        width=1000,
+        height=500,
+        plot_bgcolor="rgba(0,0,0,0)",
+        xaxis_title="Date",
+        yaxis_title="DeFi Exploits (sum lost in USD)",
+        legend_title="Legend",
+        xaxis=(dict(showgrid=False))
+    )
+Exploit_fig.show()
+
+
+# In[8]:
+
+
+History_Tlv= pd.read_excel("Hist_Tlv.xlsx")
+History_Tlv.rename({"totalLiquidityUSD":"TLV"}, axis = 1, inplace=True)
+
+for i in list(range(len(History_Tlv.index))): #get the list of the df
+    if i>1213 or i<=148:#Select the rows you want to get rid off
+        History_Tlv.drop(index=i, axis=0, inplace=True)
+History_Tlv = History_Tlv.reset_index(drop=True)
+History_Tlv
+
+
+# In[9]:
+
+
+History_TlvChain= pd.read_excel("etheurem_hist.xlsx")
+History_TlvChain.rename({"totalLiquidityUSD":"Eth_TLV"}, axis = 1, inplace=True)
+
+
+# In[10]:
+
+
+for i in list(range(len(History_TlvChain.index))): #get the list of the df
+     if i>1213 or i<=148:#Select the rows you want to get rid off
+        History_TlvChain.drop(index=i, axis=0, inplace=True)
+History_TlvChain = History_TlvChain.reset_index(drop=True)
+History_TlvChain
+
+
+# In[11]:
+
+
+Inflation= pd.read_excel("Inflation_clean.xlsx")
+Inflation.head()
+
+
+# Inflation = pd.concat([Inflation]*31, ignore_index=True)#duplicate the df to match with other df daily results
+# Inflation.size
+
+# Inflation["Years"] = pd.to_datetime(Inflation["Years"])
+
+# In[12]:
+
+
+Inflation.info()
+
+
+# In[13]:
+
+
+Inflation
+
+
+# In[17]:
+
+
+fig_Inflation=px.line(x=Inflation['Date'], y=Inflation['Rate'], title="Consumption Price Index History - April 2019 to February 2022")
+fig_Inflation.update_layout(
+        autosize=False,
+        width=1000,
+        height=500,
+        plot_bgcolor="rgba(0,0,0,0)",
+        xaxis_title="Date",
+        yaxis_title="Consumption Price Index Value",
+        legend_title="Legend",
+        xaxis=(dict(showgrid=False))
+    )
+fig_Inflation.show()
+#will need to duplicate rows
+
+
+# In[18]:
+
+
+blockchain= pd.read_csv("BCHAIN-MKTCP.csv")
+blockchain=blockchain.loc[::-1].set_index(blockchain.index) #reindexing from downup(reverse)
+blockchain.tail()
+
+
+# In[19]:
+
+
+for i in list(range(len(blockchain.index))): #get the list of the df
+    if i>1069 or i<=4:#Select the rows you want to get rid off
+        blockchain.drop(index=i, axis=0, inplace=True)
+blockchain
+
+
+# In[20]:
+
+
+blockchain.info()
+
+
+# In[21]:
+
+
+blockchain
+
+
+# In[22]:
+
+
+blockchain['Date'] = pd.to_datetime(blockchain['Date'],format='%Y-%m-%d')
+
+
+# In[23]:
+
+
+blockchain.info()
+
+
+# In[25]:
+
+
+GasPrice= pd.read_csv("AvgGasPrice.csv")
+GasPrice
+
+
+# In[26]:
+
+
+GasPrice["Value (Wei)"]= GasPrice["Value (Wei)"]/100000000*0.00000035
+GasPrice
+
+
+# In[27]:
+
+
+GasPrice['Date(UTC)'] = pd.to_datetime(GasPrice['Date(UTC)'],format='%m/%d/%Y').dt.strftime('%Y-%m-%d')
+GasPrice
+
+
+# In[28]:
+
+
+GasPrice['Date(UTC)'] = pd.to_datetime(GasPrice['Date(UTC)'],format='%Y-%m-%d')
+
+
+# In[29]:
+
+
+GasPrice.info()
+
+
+# In[30]:
+
+
+fig_GasPrice=px.line(x=GasPrice['Date(UTC)'], y=GasPrice['Value (Wei)'], title="Average Daily Wei Price History - April 2019 to February 2022")
+fig_GasPrice.update_layout(
+        autosize=False,
+        width=1000,
+        height=500,
+        plot_bgcolor="rgba(0,0,0,0)",
+        xaxis_title="Date",
+        yaxis_title="Wei price (USD)",
+        legend_title="Legend",
+        xaxis=(dict(showgrid=False))
+    )
+fig_GasPrice.show()
+
+
+# In[31]:
+
+
+fig_bitcoin=px.line(x=blockchain['Date'], y=blockchain['Value'], title="Bitcoin Market Capitalization History - April 2019 to February 2022").update_xaxes(categoryorder="total descending")
+fig_bitcoin.update_layout(
+        autosize=False,
+        width=1000,
+        height=500,
+        plot_bgcolor="rgba(0,0,0,0)",
+        xaxis_title="Date",
+        yaxis_title="Bitcoin Market Capitalization (USD)",
+        legend_title="Legend",
+        xaxis=(dict(showgrid=False))
+    )
+fig_bitcoin.show()
+
+
+# In[32]:
+
+
+fig_Historical_data=px.line(x=History_TlvChain['date'], y=[History_TlvChain['Eth_TLV']],color=px.Constant("Ethereum Historical TLV"), title="Defi Tlv, Eth Tlv and Bitcoin Market Cap Performance from April 2019 to February 2022").update_xaxes(categoryorder="total descending")
+fig_Historical_data.add_traces(go.Scatter(x=History_TlvChain['date'], y=History_Tlv['TLV'], name='Defi Historical TLV'))
+fig_Historical_data.update_layout(
+        autosize=False,
+        width=1000,
+        height=500,
+        plot_bgcolor="rgba(0,0,0,0)",
+        yaxis_title="Value in USD",
+        xaxis_title="Date",
+        legend_title="Legend",
+        xaxis=(dict(showgrid=False))
+    )
+fig_Historical_data.show()
+
+
+# In[33]:
+
+
+fig_Historical_data=px.line(x=History_TlvChain['date'], y=[History_TlvChain['Eth_TLV']],color=px.Constant("Ethereum Historical TLV"), title="Defi Tlv, Eth Tlv and Bitcoin Market Cap Performance from April 2019 to February 2022").update_xaxes(categoryorder="total descending")
+fig_Historical_data.add_traces(go.Scatter(x=History_TlvChain['date'], y=History_Tlv['TLV'], name='Defi Historical TLV'))
+fig_Historical_data.add_traces(go.Scatter(x=History_TlvChain['date'], y=blockchain['Value'], name='Bitcoin Historical Market Cap'))
+fig_Historical_data.update_layout(
+        autosize=False,
+        width=1000,
+        height=500,
+        plot_bgcolor="rgba(0,0,0,0)",
+        yaxis_title="Value in USD",
+        xaxis_title="Date",
+        legend_title="Legend",
+        xaxis=(dict(showgrid=False))
+    )
+fig_Historical_data.show()
+
+
+# # Predictions
+
+# In[34]:
+
+
+df_model=Exploit_theblockcrypto
+
+for i in list(df_model['Timestamp']):
+    for j in list( History_Tlv['date']):#get the list of the df
+        if i== j:
+            df_model['Defi_TVL']=History_Tlv['TLV']
+
+for i in list(df_model['Timestamp']):
+    for j in list( blockchain['Date']):#get the list of the df
+        if i== j:
+            df_model['Bitcoin']=blockchain['Value']
+            
+for i in list(df_model['Timestamp']):
+    for j in list( Inflation['Date']):#get the list of the df
+        if i== j:
+            df_model['Inflation']=Inflation['Rate']
+
+for i in list(df_model['Timestamp']):
+    for j in list(GasPrice['Date(UTC)']):#get the list of the df
+        if i== j:
+            df_model['GasPrice(Wei)']=GasPrice["Value (Wei)"]
+            
+
+df_model
+
+
+# In[35]:
+
+
+import seaborn as sns
+corr_mat=df_model.corr(method='pearson')
+plt.figure(figsize=(20,10))
+ax = plt.axes()
+sns.heatmap(corr_mat,vmax=1,square=True,annot=True,cmap='cubehelix')
+ax.set_title('Correlation Between Parameters')
+
+
+# In[36]:
+
+
+df_model.info()
+
+
+# In[37]:
+
+
+import datetime as dt
+df_model['Timestamp']=df_model['Timestamp'].map(dt.datetime.toordinal)
+
+
+# In[38]:
+
+
+#df1 = df_model[df_model.isna().any(axis=1)]
+df_model= df_model.dropna(axis=0)
+#df_model.drop('GasPrice(Wei)',axis=1)
+
+
+# In[39]:
+
+
+df_model.shape
+
+
+# df_model= df_model.drop("Unnamed: 0",axis=1)
+
+# In[40]:
+
+
+df_model.describe()
+
+
+# #change date to ordinal number to fit the model
+# import datetime as dt
+# df_model['date'] = pd.to_datetime(df_model['date'])
+# df_model['date']=df_model['date'].map(dt.datetime.toordinal)
+
+# In[41]:
+
+
+# X = df_model.drop('Defi_Tlv', axis=1)
+#y = df_model['Defi_Tlv']
+from sklearn.model_selection import train_test_split
+
+train, test = train_test_split(df_model, test_size=0.4, random_state=22)
+
+#train, test = train_test_split(quality, train_size=0.75, random_state=1)
+
+df_modelTrain = pd.DataFrame(train, columns=df_model.columns)
+df_modelTest = pd.DataFrame(test, columns=df_model.columns)
+
+
+X = df_model.drop('Defi_TVL', axis=1)
+X = constant=sm.add_constant(X)
+y = df_model['Defi_TVL']
+
+model=sm.OLS(y, X).fit()
+print(model.params) #watch the constant
+print("R-squared=",model.rsquared)
+
+
+# In[42]:
+
+
+model.summary()
+
+
+# In[43]:
+
+
+model.predict()
+
+
+# In[44]:
+
+
+predicted_frame=df_model
+
+for i in predicted_frame.index:
+    for j in Exploit_theblockcrypto.index:
+        if i==j:
+            predicted_frame["Timestamp"]=Exploit_theblockcrypto['Timestamp']
+
+predicted_frame["Timestamp"]=Exploit_theblockcrypto['Timestamp'].map(dt.datetime.fromordinal)
+predicted_frame
+
+
+# In[45]:
+
+
+predicted_frame = predicted_frame.sort_values(by="Timestamp")
+
+
+# In[46]:
+
+
+#predicted_frame = X_test
+predicted_frame["Y"]=y
+Y_predicted=model.predict()
+predicted_frame["predicted_value"]=Y_predicted
+
+
+# In[47]:
+
+
+import plotly.express as px
+import plotly.graph_objects as go
+     
+fig_prediction = px.scatter(predicted_frame, x=predicted_frame["Timestamp"] , y=predicted_frame["Y"],size=predicted_frame["Y"],title="Defi Real Total Value Locked VS Defi Predicted Total Value Locked Comparison", color=px.Constant("Defi Historical TLV"))
+fig_prediction.add_traces(go.Scatter(x=predicted_frame["Timestamp"] , y=predicted_frame["predicted_value"], name='Predicted Total Value Locked'))
+
+fig_prediction.update_layout(
+        autosize=False,
+        width=1000,
+        height=500,
+        plot_bgcolor="rgba(0,0,0,0)",
+        xaxis_title="Date",
+        yaxis_title="Defi Total Value Locked (USD)",
+        legend_title="Legend",
+        xaxis=(dict(showgrid=False))
+    )
+
+fig_prediction.show()
+
+
+# In[ ]:
+
+
+
+
