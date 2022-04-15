@@ -535,7 +535,7 @@ if choose == "DeFi Analytic Paper - ML Regression Model":
     st.markdown('<div style="text-align: justify">Model Results: </div>', unsafe_allow_html=True)
 
     #predict model summary add the picture
-    model_summary = Image.open("model_summary.png")
+    model_summary = Image.open("Pictures & Dataset Used/model_summary.png")
     st.image(model_summary, width=700)
 
     st.markdown('<div style="text-align: justify"> Model Predicted:\n\n</div>', unsafe_allow_html=True)
