@@ -1,0 +1,389 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# # This Notebook Give API accesses for DEFI TVL by protocals, by blockains as well as DEFI and ETHEREUM TVL History
+
+# In[36]:
+
+
+import requests
+import json
+import numpy as np
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+import plotly.express as px
+import plotly.graph_objects as go
+import streamlit as st 
+from datetime import datetime 
+pd.set_option('precision', 0)
+
+
+# **MARKET DOMINANCE for DEFI - Coin Gecko**
+
+# In[37]:
+
+
+data1 = requests.get('https://api.coingecko.com/api/v3/global/decentralized_finance_defi').text
+
+
+# In[38]:
+
+
+data1 = json.loads(data1)
+print(data1)
+
+
+# In[39]:
+
+
+#Calling the 1st value of the dictionnary
+data2=data1['data']
+df_0 = data2
+
+df = pd. DataFrame(df_0, columns =["defi_market_cap", "eth_market_cap",
+    "defi_to_eth_ratio",
+    "trading_volume_24h",
+    "defi_dominance'",
+    "top_coin_name",
+    "top_coin_defi_dominance",
+     ], index=[0]) #create DataFrame from `data_list`
+print(df)
+
+
+# In[40]:
+
+
+df.head()
+
+
+# In[41]:
+
+
+df = np.round(df, decimals=2)
+
+
+# In[42]:
+
+
+df[["defi_market_cap",
+    "eth_market_cap",
+    "defi_to_eth_ratio",
+    "trading_volume_24h",
+    "defi_dominance'",
+    "top_coin_defi_dominance",
+     ]].astype(float, copy=True)
+
+
+# In[43]:
+
+
+data_g = requests.get('https://api.coingecko.com/api/v3/global').text
+data_g = json.loads(data_g)
+#Calling the 1st value of the dictionnary
+data_global=data_g['data']
+
+gloabal_metrics1 = data_global['total_market_cap']
+global_metrics= gloabal_metrics1['usd']
+global_metrics
+
+
+# In[44]:
+
+
+df['Global']=global_metrics
+
+
+# In[45]:
+
+
+df["defi_market_cap"]=df["defi_market_cap"].astype(float, copy=True)
+
+
+# In[46]:
+
+
+df["defi_dominance'"]=df['Global']/df['defi_market_cap']
+df["defi_dominance'"]
+
+
+# In[48]:
+
+
+df
+
+
+# # **ALL PROTOCOL ON DEFI LLAMA AND THEIR TVL**
+
+# In[14]:
+
+
+TLV_by_protocols = requests.get('https://api.llama.fi/protocols').text
+
+
+# In[15]:
+
+
+TLV_by_protocols = json.loads(TLV_by_protocols)
+
+
+# In[16]:
+
+
+TLV_protocols0 = TLV_by_protocols
+
+TLV_protocols = pd. DataFrame(TLV_protocols0, columns =[
+    "id",
+    "name",
+    "address",
+    "symbol",
+    "url",
+    "description",
+    "chain",
+    "logo",
+    "audits",
+    "audit_note",
+    "gecko_id",
+    "cmcId",
+    "category",
+    "chains",
+    "module",
+    "twitter",
+    "audit_links",
+    "oracles",
+    "language",
+    "slug",
+    "tvl",
+    "chainTvls",
+    "change_1h",
+    "change_1d",
+    "change_7d",
+    "staking",
+    "fdv",
+    "mcap",
+  ]) #create DataFrame from `data_list`
+#print(TLV_protocols)
+
+
+# In[17]:
+
+
+TLV_protocols.head()
+
+
+# In[18]:
+
+
+#drop columns
+TLV_protocols_new = TLV_protocols.drop(columns=["address",
+                   "url",
+                   "logo",
+                   "gecko_id",
+                   "cmcId",
+                   "module",
+                   "twitter",
+                    "audit_note",
+                   "audit_links",
+                   "slug"], axis=0)
+TLV_protocols_new.head()
+
+
+# In[19]:
+
+
+#Defi TLV by protocols today
+fig=px.histogram(TLV_protocols_new, x=TLV_protocols_new["category"], y=TLV_protocols_new["tvl"], title="Total Value Locked by Categories").update_xaxes(categoryorder="total descending")
+fig.update_layout(
+        autosize=False,
+        width=1000,
+        height=500,
+        plot_bgcolor="rgba(0,0,0,0)",
+        xaxis_title="Total Value Locked(USD)",
+        yaxis_title="Defi Category",
+        legend_title="Legend",
+        xaxis=(dict(showgrid=False))
+    )
+fig.show()
+        
+
+
+# In[49]:
+
+
+#Defi Market Cap by protocols today
+fig_cap=px.histogram(x=TLV_protocols_new["category"], y=TLV_protocols_new["mcap"]).update_xaxes(categoryorder="total descending")
+fig_cap.update_layout(
+        autosize=False,
+        width=1000,
+        height=500,
+        plot_bgcolor="rgba(0,0,0,0)",
+        xaxis_title="Defi Categories",
+        yaxis_title="Total Value Locked (USD)",
+        legend_title="Legend",
+        xaxis=(dict(showgrid=False))
+    )
+fig_cap.show()
+
+
+# # DEFI TVL CURRENT VALUE FOR ALL CHAIN - Defi llama
+
+# In[20]:
+
+
+TVLallChain = requests.get('https://api.llama.fi/chains').text
+TVLallChain = json.loads(TVLallChain)
+
+TVL_Chain = TVLallChain
+
+Current_TVL_AllChain = pd. DataFrame(TVL_Chain, columns =[
+    "gecko_id",
+    "tvl",
+    "tokenSymbol",
+    "cmcId",
+    "name",])
+Current_TVL_AllChain.head()
+
+
+# In[21]:
+
+
+#get the categories list
+TLV_category=TLV_protocols_new['category'].value_counts()
+TLV_category
+
+
+# In[22]:
+
+
+#Number of networks
+TLV=Current_TVL_AllChain['name'].count()
+TLV
+
+
+# In[23]:
+
+
+#Get the total value locked
+TLV=Current_TVL_AllChain['tvl'].sum()
+TLV
+
+
+# In[24]:
+
+
+##Defi TVL by blockchains today
+fig_TVL_AllChain=px.histogram(x=Current_TVL_AllChain["name"], y=Current_TVL_AllChain["tvl"], title="Total Value Locked by Blockchain").update_xaxes(categoryorder="total descending")
+fig_TVL_AllChain.update_layout(
+        autosize=False,
+        width=1000,
+        height=500,
+        plot_bgcolor="rgba(0,0,0,0)",
+        xaxis_title="Blockchain",
+        yaxis_title="Total Value Locked (USD)",
+        legend_title="Legend",
+        xaxis=(dict(showgrid=False))
+    )
+fig_TVL_AllChain.show()
+
+
+# # ** DeFI TLV History - DEFI LLAMA**
+
+# In[26]:
+
+
+Historical_TLV = requests.get("https://api.llama.fi/charts").text
+Historical_TLV = json.loads(Historical_TLV)
+
+
+# In[27]:
+
+
+Historical_Tlv = Historical_TLV
+Hist_Tlv = pd.DataFrame(Historical_Tlv, columns=["date", 
+                                                 "totalLiquidityUSD",
+                                                 ])
+Hist_Tlv.head()
+
+
+# In[28]:
+
+
+Hist_Tlv.info()
+
+
+# In[29]:
+
+
+Hist_Tlv["date"].astype(float)
+
+
+# In[30]:
+
+
+Hist_Tlv['date'] = pd.to_datetime(Hist_Tlv['date'],unit='s')
+
+
+# In[31]:
+
+
+Hist_Tlv.tail()
+
+
+# In[32]:
+
+
+Hist_Tlv.to_excel("Hist_Tlv.xlsx",sheet_name='Hist_Tlv') 
+
+
+# In[50]:
+
+
+# ** Ethereum TLV History - DEFI LLAMA**
+
+
+# In[33]:
+
+
+#ETH Historical Value
+Hist_TLV_chain = requests.get("https://api.llama.fi/charts/Ethereum").text
+Hist_TLV_chain = json.loads(Hist_TLV_chain)
+Hist_by_chain = Hist_TLV_chain
+Hist_Tlv_Chain = pd.DataFrame(Hist_by_chain, columns=["date", 
+                                                 "totalLiquidityUSD",
+                                                 ])
+
+Hist_Tlv_Chain["date"].astype(float)
+Hist_Tlv_Chain['date'] = pd.to_datetime(Hist_Tlv['date'],unit='s')
+Hist_Tlv_Chain.head()
+
+
+# In[34]:
+
+
+Hist_Tlv_Chain.to_excel("etheurem_hist.xlsx",sheet_name='etheurem_hist') 
+
+
+# In[35]:
+
+
+#Ethereum & Total Defi TVL comparison
+fig_Historical_data=px.line(x=Hist_Tlv_Chain['date'], y=Hist_Tlv['totalLiquidityUSD'], color=px.Constant("Defi Historical TLV"),title="Total Defi and Ethereum Total Value Locked History").update_xaxes(categoryorder="total descending")
+fig_Historical_data.add_traces(go.Scatter(x=Hist_Tlv['date'], y=Hist_Tlv_Chain['totalLiquidityUSD'], name='Ethereum Historical TLV'))
+fig_Historical_data.update_layout(
+        autosize=False,
+        width=1000,
+        height=500,
+        plot_bgcolor="rgba(0,0,0,0)",
+        xaxis_title="Date",
+        yaxis_title="Defi TLV and Eth TLV(USD)",
+        legend_title="Legend",
+        xaxis=(dict(showgrid=False))
+    )
+fig_Historical_data.show()
+
+
+
+
+
+
+
