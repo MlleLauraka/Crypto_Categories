@@ -699,7 +699,7 @@ if choose == "Crypto Categories Vizualization - Engineering with Python":
     #About
     expander_bar = st.expander("About")
     expander_bar.markdown("""
-    * **Objectif:** Learn whose industries are being currently disrupted by the Blockchain Technolgy and what are their value on the Crypto Market as of today.
+    * **Objectif:** Learn what industries are currently being disrupted by Blockchain technology and what their value is in the Crypto market today.
     * **Python libraries:** Pandas, Streamlit, Numpy, Plotly.express, Json
     * **Data source:** [CoinGecko](https://www.coingecko.com/).
     * **Contact:** *[Laura Kouadio](https://www.linkedin.com/in/laura-kouadio-083374131/)*
