@@ -31,9 +31,9 @@ if choose == "About":
     current_picture = Image.open("Pictures & Dataset Used/test_linkedin.png")
     column1.image(current_picture, width=400)
     column2.info("""
-    Fast paced learner and natural investigator, I am directing my skills toward data sciences and analytics to extract the best insights out of data and help you make meaningful decisions.
-    I believe that working in a challenging business is vital for personal achievement.
-    With international communication skills and a good team spirit, I have a great capacity to adapt to new environments, cultures, and methods.
+    A fast-paced learner and natural investigator, I focus my skills on data science and analytics to extract the best insights from data and help you make meaningful decisions. 
+    I believe that working in a challenging company is essential for personal fulfillment. 
+    With international communication skills and a good team spirit, I have a great ability to adapt to new environments, cultures and methods.
     \n\n[Laura's LinkedIn](https://www.linkedin.com/in/laura-kouadio-083374131/) - [Laura's' GitHub](https://github.com/MlleLauraka/)""")
 
     #Create new columns for the main part
