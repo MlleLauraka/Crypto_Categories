@@ -471,7 +471,7 @@ if choose == "DeFi Analytic Paper - ML Regression Model":
     st.markdown("""---""")
                 #fig 5
     st.plotly_chart(fig_TVLEthereum_data)
-    st.markdown('<div style="text-align: justify"> DeFi historical value began to rise during summer 2020 mainly through Ethereum network that was holding more than 90% of the TVL up until April 2021. Since then, the gap keept increasing separating the overall DeFi TVL to the Ethereum TVL even though they obviously follow the same trend. On april 6th, 2021, Ethereum own 44% of DeFi TVL. Foremost, the positive trend of those 2 metrics indicates a steady uprise trend for DeFi market but the gap widening in Ethereum share is a sign of market dynamism. New networks enter on the Market to challenge Ethereum ’status quo.\n\n'
+    st.markdown('<div style="text-align: justify"> DeFi historical value began to rise during summer 2020 mainly through Ethereum network that was holding more than 90% of the TVL up until April 2021. Since then, the gap keept increasing separating the overall DeFi TVL to the Ethereum TVL even though they obviously follow the same trend. On april 6th, 2021, Ethereum own 44% of DeFi TVL. Foremost, the positive trend of those 2 metrics indicates a steady uprise trend for DeFi market but the gap widening in Ethereum share is a sign of market dynamism. New networks enter on the Market to challenge Ethereum status quo.\n\n'
                 'Source: Defillama </div>', unsafe_allow_html=True)
     st.markdown("""---""")
     st.markdown('<div style="text-align: justify"> Ethereum’s huge gas price impact user’s portfolios. Those ones are tempted to invest in new blockchains, less trusted and with less liquidity but that can offer smaller transaction fees.  </div>', unsafe_allow_html=True)
