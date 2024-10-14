@@ -56,6 +56,26 @@ if choose == "About":
     st.markdown("""---""")
     st.markdown('**<div style="text-align: justify"> PROFESSIONAL EXPERIENCE</div>**', unsafe_allow_html=True)
     st.markdown("""---""")
+    txt("**MORGAN STANLEY - New York, United States of America**", "*January 2023 - Present Time*")
+    st.markdown("""
+            *RISK ANALYST - MODEL EUC METRICS (Firm Risk Management), ASSOCIATE FULL TIME*
+            - Identification and Streamlining of FRM Models (224) and Tools (195) implemented in EUCs and Systems: managing lifecycle from identification to inventory decommission and monitoring controls on Models and Tools.
+            - Project Management for FRM Citizen Lead Development Applications: Implementing a Control Framework to mitigate Operational Risk on all Firm Risk Management Applications which fall under neither Systems, nor EUCs category.
+            - Analytics and Business decision reporting: Build and Maintain Business Intelligence Decks (Power Bi, Tableau, VBA Excel macros) to design metrics, create threshold and analyze data for business decision reporting.
+            - Regulatory Reporting for CCAR and QST: Report to the Bank Capital Steering Committee on controls for models implemented using EUCs.
+            - Key Control Validation: Independent Review of FRM Key Controls Design and Performance (56).
+            - IMS Enhancement and UAT Testing: Gather issues or improvement about IMS System Logic or IMS System Layout
+            """)
+
+    st.markdown("""---""")
+    txt("**MORGAN STANLEY - New York, United States of America**", "*August 2022 - December 2023*")
+    st.markdown("""
+        *RISK ANALYST - MODEl EUC METRICS (Firm Risk Management), ANALYST FULL TIME*
+        - Created dashboard through Business intelligence tools (Power BI, SQL, VBA) to create and showcase metrics
+        - Worked hands in Hand with Credit Risk, Market Risk and Risk Analytic Teams to improve EUC Control metrics
+        """)
+
+    st.markdown("""---""")
     txt("**SOCIETE GENERALE CIB - New York, United States of America**","*January 2020 - July 2021*")
     st.markdown("""
     *RISK ANALYST IN PERMANENT CONTROL COORDINATION (Enterprise Risk Management), FULL TIME*
@@ -67,6 +87,7 @@ if choose == "About":
     - Performed User Acceptance Testing (UAT) for the elements of the tool’s framework (ARCHER GRC tool)
     """)
 
+    st.markdown("""---""")
     txt("**SFR - Paris, France**", "*September 2018 - August 2019*")
     st.markdown("""
         *BUSINESS ANALYST (Commission/Finance), APPRENTICESHIP*
@@ -75,9 +96,10 @@ if choose == "About":
         - Produced cycles of commission for the internal control: Guarantee of reliability, conformity of calculations, control of deadlines and deliverables
           """)
 
+    st.markdown("""---""")
     txt("**META CONSEIL - Chessy, France**","*October 2016 - April 2017*")
     st.markdown("""
-        *RISK ANALYST IN PERMANENT CONTROL COORDINATION (Enterprise Risk Management), FULL TIME*
+        *CONSULTANT - PUBLIC FINANCE (Enterprise Risk Management), FULL TIME*
         - Created grant files: Help writing business plan for SMEs (technologic, digital, metallurgic, medical, retail sectors)
         - Analysed the client’s financial situation: maintained financial model and drafted forecast analysis with project profitability
         - Researched financial mechanism valuable for the client business project: grant, non-refundable advance, tax credit, leveraged financing and acquisition financing
